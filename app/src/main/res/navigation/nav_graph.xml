@@ -1,6 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-             xmlns:app="http://schemas.android.com/apk/res-auto"
-             android:id="@+id/nav_graph">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/mainFragment">
 
+
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.flashcards.ui.MainFragment"
+        android:label="MainFragment" >
+        <action
+            android:id="@+id/action_mainFragment_to_listOfCardsFragment"
+            app:destination="@id/listOfCardsFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_listOfCardReviewFragment2"
+            app:destination="@id/listOfCardReviewFragment" />
+        <action
+            android:id="@+id/action_mainFragment_to_addStackFragment2"
+            app:destination="@id/addStackFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addCardFragment"
+        android:name="com.example.flashcards.ui.AddCardFragment"
+        android:label="AddCardFragment" />
+    <fragment
+        android:id="@+id/addStackFragment"
+        android:name="com.example.flashcards.ui.AddStackFragment"
+        android:label="AddStackFragment" >
+        <action
+            android:id="@+id/action_addStackFragment_to_listOfCardReviewFragment"
+            app:destination="@id/listOfCardReviewFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfCardsFragment"
+        android:name="com.example.flashcards.ui.ListOfCardsFragment"
+        android:label="ListOfCardsFragment" >
+        <action
+            android:id="@+id/action_listOfCardsFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/listOfCardReviewFragment"
+        android:name="com.example.flashcards.ui.ListOfCardReviewFragment"
+        android:label="ListOfCardReviewFragment" >
+        <action
+            android:id="@+id/action_listOfCardReviewFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
+        <action
+            android:id="@+id/action_listOfCardReviewFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
 </navigation>

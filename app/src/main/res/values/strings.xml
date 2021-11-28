@@ -1,3 +1,12 @@
 <resources>
     <string name="app_name">Flashcards</string>
+    <string name="tool_text">tool text</string>
+    <string name="tool_card_name">card name</string>
+    <string name="tool_front_side">front side</string>
+    <string name="tool_back_side">back side</string>
+    <string name="add_new_stack">add new stack</string>
+    <string name="hint_name_of_stack">Название стопки</string>
+    <string name="hint_add_card_front_text">Текст лицевой стороны</string>
+    <string name="hint_add_card_back_text">Текст обратной стороны</string>
+    <string name="save_button_text">save</string>
 </resources>
