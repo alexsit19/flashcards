@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
     foreignKeys = [ForeignKey(
         entity = Stack::class,
         parentColumns = arrayOf("id"),
-        childColumns = arrayOf("stack_id"),
+        childColumns = arrayOf("stackId"),
         onDelete = CASCADE
     )]
 )
@@ -18,7 +18,10 @@ data class Card(
     @PrimaryKey
     @ColumnInfo(name = "id")
     val id: Long,
+    @ColumnInfo(name = "stack_id")
+    val stackId: Long,
     @ColumnInfo(name = "front_side")
     val frontSide: String,
+    @ColumnInfo(name = "back_side")
     val backSide: String
 )
