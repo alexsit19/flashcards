@@ -1,4 +1,4 @@
-package com.example.flashcards.repository.room
+package com.example.flashcards.data.room
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow

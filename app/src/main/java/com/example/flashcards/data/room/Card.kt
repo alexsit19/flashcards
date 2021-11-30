@@ -1,4 +1,4 @@
-package com.example.flashcards.repository.room
+package com.example.flashcards.data.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity
@@ -10,7 +10,7 @@ import androidx.room.PrimaryKey
     foreignKeys = [ForeignKey(
         entity = Stack::class,
         parentColumns = arrayOf("id"),
-        childColumns = arrayOf("stackId"),
+        childColumns = arrayOf("stack_id"),
         onDelete = CASCADE
     )]
 )

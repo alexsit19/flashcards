@@ -1,4 +1,4 @@
-package com.example.flashcards.repository.room
+package com.example.flashcards.data.room
 
 import androidx.room.ColumnInfo
 import androidx.room.Entity

@@ -1,12 +1,11 @@
-package com.example.flashcards.repository.room
+package com.example.flashcards.data.room
 
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.flashcards.FlashcardsApp
-import com.example.flashcards.repository.DB_NAME
-import com.example.flashcards.repository.DB_VERSION
-import kotlinx.coroutines.CoroutineScope
+import com.example.flashcards.data.repository.DB_NAME
+import com.example.flashcards.data.repository.DB_VERSION
 
 @Database(entities = [Card::class, Stack::class], version = DB_VERSION, exportSchema = false)
 public abstract class FlashcardsDatabase : RoomDatabase()  {
@@ -19,12 +18,11 @@ public abstract class FlashcardsDatabase : RoomDatabase()  {
         private var INSTANCE: FlashcardsDatabase? = null
 
         fun getDatabase(
-            context: FlashcardsApp?,
-            scope: CoroutineScope
+            context: FlashcardsApp
         ): FlashcardsDatabase {
             return INSTANCE ?: synchronized(this) {
                 val instance = Room.databaseBuilder(
-                    context!!.applicationContext,
+                    context.applicationContext,
                     FlashcardsDatabase::class.java,
                     DB_NAME
                 )
