@@ -1,4 +1,4 @@
-package com.example.flashcards.ui
+package com.example.flashcards.presentation.ui
 
 import android.os.Bundle
 import android.util.Log

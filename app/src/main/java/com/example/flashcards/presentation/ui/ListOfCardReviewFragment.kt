@@ -1,4 +1,4 @@
-package com.example.flashcards.ui
+package com.example.flashcards.presentation.ui
 
 import androidx.fragment.app.Fragment
 import com.example.flashcards.R

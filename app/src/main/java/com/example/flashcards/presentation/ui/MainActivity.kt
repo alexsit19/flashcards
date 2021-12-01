@@ -1,4 +1,4 @@
-package com.example.flashcards.ui
+package com.example.flashcards.presentation.ui
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
