@@ -1,7 +1,8 @@
 package com.example.flashcards.domain
 
-import com.example.flashcards.data.FlashcardsRepository
+import com.example.flashcards.data.Repository
+import javax.inject.Inject
 
-class GetAllStacksUseCase(private val repository: FlashcardsRepository) {
+class GetAllStacksUseCase @Inject constructor(private val repository: Repository) {
     operator fun invoke() = repository.getAllStacks()
 }

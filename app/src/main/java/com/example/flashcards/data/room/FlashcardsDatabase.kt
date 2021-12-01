@@ -4,8 +4,8 @@ import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
 import com.example.flashcards.FlashcardsApp
-import com.example.flashcards.data.repository.DB_NAME
-import com.example.flashcards.data.repository.DB_VERSION
+import com.example.flashcards.data.DB_VERSION
+import com.example.flashcards.data.DB_NAME
 
 @Database(entities = [Card::class, Stack::class], version = DB_VERSION, exportSchema = false)
 public abstract class FlashcardsDatabase : RoomDatabase()  {
@@ -17,19 +17,19 @@ public abstract class FlashcardsDatabase : RoomDatabase()  {
         @Volatile
         private var INSTANCE: FlashcardsDatabase? = null
 
-        fun getDatabase(
-            context: FlashcardsApp
-        ): FlashcardsDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    FlashcardsDatabase::class.java,
-                    DB_NAME
-                )
-                    .build()
-                INSTANCE = instance
-                instance
-            }
-        }
+//        fun getDatabase(
+//            context: FlashcardsApp
+//        ): FlashcardsDatabase {
+//            return INSTANCE ?: synchronized(this) {
+//                val instance = Room.databaseBuilder(
+//                    context.applicationContext,
+//                    FlashcardsDatabase::class.java,
+//                    DB_NAME
+//                )
+//                    .build()
+//                INSTANCE = instance
+//                instance
+//            }
+//        }
     }
 }

@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.flashcards.ui.MainFragment"
+        android:name="com.example.flashcards.presentation.ui.MainFragment"
         android:label="MainFragment" >
         <action
             android:id="@+id/action_mainFragment_to_listOfCardsFragment"
@@ -21,11 +21,11 @@
     </fragment>
     <fragment
         android:id="@+id/addCardFragment"
-        android:name="com.example.flashcards.ui.AddCardFragment"
+        android:name="com.example.flashcards.presentation.ui.AddCardFragment"
         android:label="AddCardFragment" />
     <fragment
         android:id="@+id/addStackFragment"
-        android:name="com.example.flashcards.ui.AddStackFragment"
+        android:name="com.example.flashcards.presentation.ui.AddStackFragment"
         android:label="AddStackFragment" >
         <action
             android:id="@+id/action_addStackFragment_to_listOfCardReviewFragment"
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/listOfCardsFragment"
-        android:name="com.example.flashcards.ui.ListOfCardsFragment"
+        android:name="com.example.flashcards.presentation.ui.ListOfCardsFragment"
         android:label="ListOfCardsFragment" >
         <action
             android:id="@+id/action_listOfCardsFragment_to_mainFragment"
@@ -41,7 +41,7 @@
     </fragment>
     <fragment
         android:id="@+id/listOfCardReviewFragment"
-        android:name="com.example.flashcards.ui.ListOfCardReviewFragment"
+        android:name="com.example.flashcards.presentation.ui.ListOfCardReviewFragment"
         android:label="ListOfCardReviewFragment" >
         <action
             android:id="@+id/action_listOfCardReviewFragment_to_addCardFragment"
