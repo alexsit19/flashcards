@@ -9,25 +9,35 @@
         android:id="@+id/toolbarAddStackFragment"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
+        android:background="@color/deep_sky_blue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <EditText
-        android:id="@+id/add_stack_name"
+    <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:id="@+id/text_input_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/margin_full"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="8dp"
-        android:layout_marginEnd="@dimen/margin_full"
-        android:hint="@string/hint_name_of_stack"
-        android:inputType="text"
-        android:minHeight="48dp"
+        android:layout_marginEnd="16dp"
+        app:endIconMode="custom"
+        app:endIconDrawable="@drawable/ic_baseline_check_circle_24"
+        app:errorEnabled="true"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbarAddStackFragment">
 
-    </EditText>
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/text_input_edittext"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/hint_name"
+            />
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

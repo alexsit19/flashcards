@@ -7,12 +7,14 @@ import androidx.recyclerview.widget.ListAdapter
 import com.example.flashcards.data.room.Stack
 import com.example.flashcards.databinding.StackItemBinding
 
-class StackAdapter() : ListAdapter<Stack, StackViewHolder>(StackComparator()) {
+class StackAdapter(
+    private val listener: RecyclerViewItemClickListener
+    ) : ListAdapter<Stack, StackViewHolder>(StackComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StackViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = StackItemBinding.inflate(layoutInflater, parent, false)
-        return StackViewHolder(binding)
+        return StackViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: StackViewHolder, position: Int) {

@@ -18,6 +18,9 @@
         <action
             android:id="@+id/action_mainFragment_to_addStackFragment2"
             app:destination="@id/addStackFragment" />
+        <action
+            android:id="@+id/action_mainFragment_self"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCardFragment"
@@ -30,6 +33,9 @@
         <action
             android:id="@+id/action_addStackFragment_to_listOfCardReviewFragment"
             app:destination="@id/listOfCardReviewFragment" />
+        <action
+            android:id="@+id/action_addStackFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
     </fragment>
     <fragment
         android:id="@+id/listOfCardsFragment"

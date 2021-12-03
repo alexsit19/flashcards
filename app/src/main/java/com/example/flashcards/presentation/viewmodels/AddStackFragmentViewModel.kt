@@ -14,11 +14,12 @@ import javax.inject.Inject
 class AddStackFragmentViewModel @Inject constructor(
     private val insertStackUseCase: InsertStackUseCase
 ) : ViewModel() {
+
+
     fun insert(stack: Stack) {
         Log.d("DEBUG", "insert")
         viewModelScope.launch(Dispatchers.IO) {
             insertStackUseCase(stack)
-
         }
     }
 

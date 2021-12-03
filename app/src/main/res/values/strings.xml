@@ -9,4 +9,7 @@
     <string name="hint_add_card_front_text">Текст лицевой стороны</string>
     <string name="hint_add_card_back_text">Текст обратной стороны</string>
     <string name="save_button_text">save</string>
+    <string name="hint_name">Название стопки</string>
+    <string name="error_input_layout">не может быть пустым</string>
+    <string name="empty_string"></string>
 </resources>
