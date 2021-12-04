@@ -5,7 +5,7 @@
     <item
         android:id="@+id/action_edit"
         android:icon="@drawable/ic_baseline_edit_24"
-        android:title="ok"
+        android:title=""
         app:showAsAction="ifRoom"/>
     <item
         android:id="@+id/action_cards_list"
@@ -15,6 +15,6 @@
     <item
         android:id="@+id/action_delete"
         android:icon="@drawable/ic_baseline_delete_24"
-        android:title="ok"
+        android:title=""
         app:showAsAction="ifRoom"/>
 </menu>

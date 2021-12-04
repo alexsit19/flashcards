@@ -16,12 +16,13 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class AddStackFragment : Fragment(R.layout.add_stack_fragment) {
 
-    private lateinit var binding: AddStackFragmentBinding
+    private var _binding: AddStackFragmentBinding? = null
+    private val binding: AddStackFragmentBinding = requireNotNull(_binding)
     private val viewModel: AddStackFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = AddStackFragmentBinding.bind(view)
+        _binding = AddStackFragmentBinding.bind(view)
         binding.toolbarAddStackFragment.inflateMenu(R.menu.menu_ok_cancel)
         binding.toolbarAddStackFragment.setNavigationIcon(R.drawable.ic_baseline_close_24)
         binding.toolbarAddStackFragment.setNavigationOnClickListener{
@@ -51,5 +52,10 @@ class AddStackFragment : Fragment(R.layout.add_stack_fragment) {
             }
             true
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

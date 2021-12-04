@@ -8,5 +8,9 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="deep_sky_blue">#FF00BFFF</color>
+    <color name="background_primary">#FF0099CC</color>
+    <color name="background_primary_dark">#FF0086b3</color>
     <color name="silver">#FFC0C0C0</color>
+    <color name="gray">#FF808080</color>
+    <color name="dodger_blue">#FF1E90FF</color>
 </resources>

@@ -19,8 +19,8 @@
             android:id="@+id/action_mainFragment_to_addStackFragment2"
             app:destination="@id/addStackFragment" />
         <action
-            android:id="@+id/action_mainFragment_self"
-            app:destination="@id/mainFragment" />
+            android:id="@+id/action_mainFragment_to_editStackFragment"
+            app:destination="@id/editStackFragment" />
     </fragment>
     <fragment
         android:id="@+id/addCardFragment"
@@ -54,6 +54,14 @@
             app:destination="@id/addCardFragment" />
         <action
             android:id="@+id/action_listOfCardReviewFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editStackFragment"
+        android:name="com.example.flashcards.presentation.ui.EditStackFragment"
+        android:label="EditStackFragment" >
+        <action
+            android:id="@+id/action_editStackFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>

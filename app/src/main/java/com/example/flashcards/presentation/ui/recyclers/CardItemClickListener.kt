@@ -1,8 +1,6 @@
 package com.example.flashcards.presentation.ui.recyclers
 
-interface RecyclerViewItemClickListener {
+interface CardItemClickListener {
 
     fun onItemClickListener()
-
-    fun onLongItemClickListener()
 }

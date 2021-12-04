@@ -1,53 +1,62 @@
 package com.example.flashcards.presentation.ui
 
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.coroutineScope
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.example.flashcards.R
+import com.example.flashcards.data.STACK_ID
+import com.example.flashcards.data.STACK_NAME
+import com.example.flashcards.data.room.Stack
 import com.example.flashcards.databinding.MainFragmentBinding
-import com.example.flashcards.presentation.ui.recyclers.RecyclerViewItemClickListener
+import com.example.flashcards.presentation.ui.recyclers.StackItemClickListener
 import com.example.flashcards.presentation.ui.recyclers.StackAdapter
 import com.example.flashcards.presentation.viewmodels.MainFragmentViewModel
 //import com.example.flashcards.presentation.viewmodels.MainFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MainFragment : Fragment(R.layout.main_fragment),
-    RecyclerViewItemClickListener {
+    StackItemClickListener {
 
-    private lateinit var binding: MainFragmentBinding
+    private var _binding: MainFragmentBinding? = null
+    private val binding: MainFragmentBinding = requireNotNull(_binding)
     private val viewModel: MainFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = MainFragmentBinding.bind(view)
+        _binding = MainFragmentBinding.bind(view)
         setMainMenuAndTitle()
 
-        val adapter = StackAdapter(this)
+        val adapter = StackAdapter(this, requireContext())
         binding.stackRecycler.adapter = adapter
 
-        lifecycleScope.launch {
-            viewModel.stackListIsEmptyUiState.collect {
-                if(it) {
-                    binding.centralText.visibility = View.VISIBLE
-                    Log.d("DEBUG", "СПИСОК ПУСТОЙ")
-                } else {
-
-                    binding.centralText.visibility = View.GONE
-                    viewModel.getAllStacks().collect() { list ->
-                        adapter.submitList(list)
+        lifecycleScope.launchWhenCreated {
+            viewModel.stackListIsEmptyUiState
+                .onEach {
+                    when (it) {
+                        true -> binding.centralText.visibility = View.VISIBLE
+                        false -> binding.centralText.visibility = View.GONE
                     }
-                }
-            }
+                }.collect()
         }
+
+
+        lifecycleScope.launch {
+            viewModel.getAllStacks().collect() { list ->
+                adapter.submitList(list)
+            }
+    }
+
 
         binding.toolbarMainFragment.setOnMenuItemClickListener {
             Log.d("DEBUG", "yF;FNJ VTY.")
@@ -62,28 +71,62 @@ class MainFragment : Fragment(R.layout.main_fragment),
         }
     }
 
-    override fun onItemClickListener() {
-        Log.d("DEBUG", "fragment on clickListener")
-    }
-
-    override fun onLongItemClickListener() {
-        binding.toolbarMainFragment.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
-        setEditMenu()
-        binding.toolbarMainFragment.setNavigationOnClickListener {
-            setMainMenuAndTitle()
-            findNavController().navigate(R.id.action_mainFragment_self)
-        }
-    }
-
     private fun setMainMenuAndTitle() {
+        binding.toolbarMainFragment.navigationIcon = null
         binding.toolbarMainFragment.menu.clear()
+        binding.toolbarMainFragment.setTitleTextColor(resources.getColor(R.color.white))
         binding.toolbarMainFragment.setTitle(R.string.app_name)
         binding.toolbarMainFragment.inflateMenu(R.menu.menu_main_fragment)
     }
 
-    private fun setEditMenu() {
-        binding.toolbarMainFragment.menu.clear()
-        binding.toolbarMainFragment.title = ""
-        binding.toolbarMainFragment.inflateMenu(R.menu.menu_edit_stack_item)
+//    private fun setEditMenu(stack: Stack) {
+//        binding.toolbarMainFragment.menu.clear()
+//        binding.toolbarMainFragment.title = ""
+//        binding.toolbarMainFragment.inflateMenu(R.menu.menu_edit_stack_item)
+//        binding.toolbarMainFragment.setOnMenuItemClickListener {
+//            when(it.itemId) {
+//                R.id.action_delete -> {
+//                    deleteStack(stack)
+//                    setMainMenuAndTitle()
+//                    true
+//                }
+//                else -> false
+//            }
+//        }
+//    }
+
+    override fun openCardList(stackId: Long) {
+        findNavController().navigate(
+            R.id.action_mainFragment_to_listOfCardsFragment,
+            bundleOf(STACK_ID to stackId)
+        )
+    }
+
+    override fun deleteStack(stack: Stack) {
+        viewModel.deleteStack(stack)
+    }
+
+    override fun editStack(stack: Stack) {
+        findNavController().navigate(
+            R.id.action_mainFragment_to_editStackFragment,
+            bundleOf(
+                STACK_ID to stack.id,
+                STACK_NAME to stack.name
+            )
+        )
+    }
+
+    override fun openCardListReview(stackId: Long) {
+        findNavController().navigate(
+            R.id.action_addStackFragment_to_listOfCardReviewFragment,
+            bundleOf(
+                STACK_ID to stackId
+            )
+        )
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
