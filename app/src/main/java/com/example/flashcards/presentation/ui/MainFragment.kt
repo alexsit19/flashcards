@@ -2,7 +2,9 @@ package com.example.flashcards.presentation.ui
 
 import android.os.Bundle
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
@@ -29,7 +31,7 @@ class MainFragment : Fragment(R.layout.main_fragment),
     StackItemClickListener {
 
     private var _binding: MainFragmentBinding? = null
-    private val binding: MainFragmentBinding = requireNotNull(_binding)
+    private val binding: MainFragmentBinding get() = requireNotNull(_binding)
     private val viewModel: MainFragmentViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

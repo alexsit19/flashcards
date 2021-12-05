@@ -5,5 +5,5 @@ import com.example.flashcards.data.room.Stack
 import javax.inject.Inject
 
 class InsertStackUseCase @Inject constructor(private val repository: Repository) {
-    suspend operator fun invoke(stack: Stack) = repository.insertStack(stack)
+    suspend operator fun invoke(stack: Stack) : Long = repository.insertStack(stack)
 }

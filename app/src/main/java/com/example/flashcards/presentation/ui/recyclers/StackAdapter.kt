@@ -16,7 +16,7 @@ class StackAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): StackViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         val binding = StackItemBinding.inflate(layoutInflater, parent, false)
-        return StackViewHolder(binding, listener, context)
+        return StackViewHolder(binding, listener)
     }
 
     override fun onBindViewHolder(holder: StackViewHolder, position: Int) {

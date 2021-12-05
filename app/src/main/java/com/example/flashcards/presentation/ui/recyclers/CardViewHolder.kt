@@ -15,7 +15,7 @@ class CardViewHolder(
 
         binding.itemLayout.setOnClickListener{
 
-            listener.onItemClickListener()
+
         }
     }
 }

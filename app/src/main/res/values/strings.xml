@@ -11,5 +11,5 @@
     <string name="save_button_text">save</string>
     <string name="hint_name">Название стопки</string>
     <string name="error_input_layout">не может быть пустым</string>
-    <string name="empty_string"></string>
+    <string name="list_is_empty">List is empty</string>
 </resources>

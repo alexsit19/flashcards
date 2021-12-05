@@ -55,6 +55,9 @@
         <action
             android:id="@+id/action_listOfCardReviewFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_listOfCardReviewFragment_to_editCardFragment"
+            app:destination="@id/editCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/editStackFragment"
@@ -62,6 +65,14 @@
         android:label="EditStackFragment" >
         <action
             android:id="@+id/action_editStackFragment_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/editCardFragment"
+        android:name="com.example.flashcards.presentation.ui.EditCardFragment"
+        android:label="EditCardFragment" >
+        <action
+            android:id="@+id/action_editCardFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
     </fragment>
 </navigation>
