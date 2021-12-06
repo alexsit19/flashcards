@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.example.flashcards.data.room.Stack
 import com.example.flashcards.domain.GetStackWithMaxId
 import com.example.flashcards.domain.InsertStackUseCase
+import com.example.flashcards.domain.UpdateStackUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,23 +15,23 @@ import javax.inject.Inject
 @HiltViewModel
 class AddStackFragmentViewModel @Inject constructor(
     private val insertStackUseCase: InsertStackUseCase,
-    private val getStackWithMaxId: GetStackWithMaxId
+    private val getStackWithMaxId: GetStackWithMaxId,
+    private val updateStackUseCase: UpdateStackUseCase
 ) : ViewModel() {
 
-    val s = MutableStateFlow<Long>(-1)
+    val stateStackId = MutableStateFlow<Long>(-1)
 
-    fun getStack() {
-        viewModelScope.launch {
+    fun insert(stack: Stack) {
+        viewModelScope.launch(Dispatchers.IO) {
+            insertStackUseCase(stack)
+            stateStackId.value = getStackWithMaxId().id
 
         }
     }
 
-    fun insert(stack: Stack) : Long {
-        viewModelScope.launch(Dispatchers.IO) {
-            insertStackUseCase(stack)
-            s.value = getStackWithMaxId().id
-
+    fun updateStack(stack: Stack) {
+        viewModelScope.launch {
+            updateStackUseCase(stack)
         }
-        return stack.id
     }
 }

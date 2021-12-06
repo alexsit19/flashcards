@@ -16,9 +16,9 @@ import androidx.room.PrimaryKey
     )]
 )
 data class Card(
-    @PrimaryKey
+    @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")
-    val id: Long,
+    val id: Long = 0,
     @ColumnInfo(name = "stack_id")
     val stackId: Long,
     @ColumnInfo(name = "front_side")

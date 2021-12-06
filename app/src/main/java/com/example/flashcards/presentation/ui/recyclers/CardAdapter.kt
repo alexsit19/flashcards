@@ -8,7 +8,7 @@ import com.example.flashcards.data.room.Card
 import com.example.flashcards.databinding.CardReviewItemBinding
 
 class CardAdapter(
-    private val listener: CardItemClickListener
+    private val listener: CardReviewItemClickListener
 ) : ListAdapter<Card, CardViewHolder>(CardComparator()) {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CardViewHolder {

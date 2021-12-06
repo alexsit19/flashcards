@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
@@ -33,6 +34,13 @@ class MainFragment : Fragment(R.layout.main_fragment),
     private var _binding: MainFragmentBinding? = null
     private val binding: MainFragmentBinding get() = requireNotNull(_binding)
     private val viewModel: MainFragmentViewModel by viewModels()
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        val callback = requireActivity().onBackPressedDispatcher.addCallback(this) {
+            requireActivity().finish()
+        }
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -120,7 +128,7 @@ class MainFragment : Fragment(R.layout.main_fragment),
 
     override fun openCardListReview(stackId: Long) {
         findNavController().navigate(
-            R.id.action_addStackFragment_to_listOfCardReviewFragment,
+            R.id.action_mainFragment_to_listOfCardReviewFragment2,
             bundleOf(
                 STACK_ID to stackId
             )

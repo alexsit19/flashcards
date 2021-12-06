@@ -31,11 +31,8 @@ class AddStackFragment : Fragment(R.layout.add_stack_fragment) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         _binding = AddStackFragmentBinding.bind(view)
-        binding.toolbarAddStackFragment.inflateMenu(R.menu.menu_ok_cancel)
-        binding.toolbarAddStackFragment.setNavigationIcon(R.drawable.ic_baseline_close_24)
-        binding.toolbarAddStackFragment.setNavigationOnClickListener{
-            findNavController().navigate(R.id.action_addStackFragment_to_mainFragment)
-        }
+
+        initToolbar()
 
         binding.textInputEdittext.doOnTextChanged { text, start, before, count ->
             if(text?.length == 0) {
@@ -51,13 +48,12 @@ class AddStackFragment : Fragment(R.layout.add_stack_fragment) {
             val stackName = binding.textInputEdittext.text.toString()
 
             if (stackName.isNotEmpty() ) {
-                binding.textInputLayout.error = null
+                //binding.textInputLayout.error = null
                 val id = viewModel.insert(Stack(0, stackName))
                 Log.d("DEBUG", "STACK_ID $id")
-                Log.d("DEBUG", "STATE_FLOW_ID ${viewModel.s.value}")
 
                 lifecycleScope.launchWhenCreated {
-                    viewModel.s
+                    viewModel.stateStackId
                         .onEach {
                         when(it) {
                             -1L -> {    }
@@ -68,16 +64,20 @@ class AddStackFragment : Fragment(R.layout.add_stack_fragment) {
                                     )
                             }
                         }
-
-
                         }.collect()
                 }
-                //
-
             } else {
                 binding.textInputLayout.error = getString(R.string.error_input_layout)
             }
             true
+        }
+    }
+
+    fun initToolbar() {
+        binding.toolbarAddStackFragment.inflateMenu(R.menu.menu_ok_cancel)
+        binding.toolbarAddStackFragment.setNavigationIcon(R.drawable.ic_baseline_close_24)
+        binding.toolbarAddStackFragment.setNavigationOnClickListener{
+            findNavController().navigate(R.id.action_addStackFragment_to_mainFragment)
         }
     }
 

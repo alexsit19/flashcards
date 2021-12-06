@@ -16,7 +16,9 @@ import com.example.flashcards.data.room.Stack
 import com.example.flashcards.databinding.EditStackFragmentBinding
 import com.example.flashcards.databinding.MainFragmentBinding
 import com.example.flashcards.presentation.viewmodels.EditStackFragmentViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EditStackFragment : Fragment(R.layout.edit_stack_fragment) {
 
     private var _binding: EditStackFragmentBinding? = null
@@ -62,7 +64,7 @@ class EditStackFragment : Fragment(R.layout.edit_stack_fragment) {
                 binding.textInputLayout.error = null
                 viewModel.updateStack(Stack(stackId, stackNameEditText))
                 findNavController().navigate(
-                    R.id.action_addStackFragment_to_listOfCardReviewFragment
+                    R.id.action_editStackFragment_to_mainFragment
                 )
             } else {
                 binding.textInputLayout.error = getString(R.string.error_input_layout)

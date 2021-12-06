@@ -3,7 +3,6 @@ package com.example.flashcards.presentation.viewmodels
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.flashcards.data.FROM_MAIN_FRAGMENT
 import com.example.flashcards.data.room.Card
 import com.example.flashcards.domain.*
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -18,6 +17,7 @@ import javax.inject.Inject
 class ListOfCardReviewFragmentViewModel @Inject constructor(
     private val getAllCardsInStackUseCase: GetAllCardsInStackUseCase,
     private val deleteCardUseCase: DeleteCardUseCase,
+    private val updateCardUseCase: UpdateCardUseCase
     ) : ViewModel() {
 
     private val _listIsEmptyUiState = MutableStateFlow(true)
@@ -40,7 +40,6 @@ class ListOfCardReviewFragmentViewModel @Inject constructor(
                 }
             }
     }
-
 
     fun deleteCard(card: Card) {
         viewModelScope.launch {
