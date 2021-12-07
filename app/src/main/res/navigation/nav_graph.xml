@@ -48,6 +48,9 @@
         <action
             android:id="@+id/action_listOfCardsFragment_to_mainFragment"
             app:destination="@id/mainFragment" />
+        <action
+            android:id="@+id/action_listOfCardsFragment_to_addCardFragment"
+            app:destination="@id/addCardFragment" />
     </fragment>
     <fragment
         android:id="@+id/listOfCardReviewFragment"

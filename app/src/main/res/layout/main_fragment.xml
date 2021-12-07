@@ -48,7 +48,7 @@
         android:id="@+id/central_text"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/list_is_empty"
+        android:text="@string/list_stack_is_empty"
         android:textSize="22sp"
         android:textStyle="bold"
         android:visibility="gone"

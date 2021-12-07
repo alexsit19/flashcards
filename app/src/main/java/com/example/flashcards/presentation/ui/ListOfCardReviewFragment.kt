@@ -49,7 +49,6 @@ class ListOfCardReviewFragment : Fragment(),
         savedInstanceState: Bundle?
     ): View? {
         _binding = ListOfCardReviewFragmentBinding.inflate(inflater, container, false)
-
         return binding.root
     }
 

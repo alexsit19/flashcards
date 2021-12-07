@@ -5,11 +5,13 @@
     <string name="tool_front_side">front side</string>
     <string name="tool_back_side">back side</string>
     <string name="add_new_stack">add new stack</string>
-    <string name="hint_name_of_stack">Название стопки</string>
-    <string name="hint_add_card_front_text">Текст лицевой стороны</string>
-    <string name="hint_add_card_back_text">Текст обратной стороны</string>
+    <string name="hint_name_of_stack">Stack name</string>
+    <string name="hint_add_card_front_text">Front side text</string>
+    <string name="hint_add_card_back_text">Back side text</string>
     <string name="save_button_text">save</string>
-    <string name="hint_name">Название стопки</string>
-    <string name="error_input_layout">не может быть пустым</string>
-    <string name="list_is_empty">List is empty</string>
+    <string name="hint_name">Stack name</string>
+    <string name="error_input_layout">cannot be empty</string>
+    <string name="list_stack_is_empty">Stack list is empty</string>
+    <string name="list_card_is_empty">Card list is empty</string>
+    <string name="add_new_card">add new card</string>
 </resources>
