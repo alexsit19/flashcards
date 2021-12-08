@@ -20,15 +20,12 @@ class MainFragmentViewModel @Inject constructor(
 
     private val _stackListIsEmptyUiState = MutableStateFlow(true)
     val stackListIsEmptyUiState: StateFlow<Boolean> = _stackListIsEmptyUiState
-    private val allStackFlow = getAllStacksUseCase()
-
-    init {
-        setUiState()
-    }
+    //private val allStackFlow = getAllStacksUseCase()
+    var allStackFlow: Flow<List<Stack>>? = null
 
     private fun setUiState() {
         viewModelScope.launch {
-            allStackFlow.collect { list ->
+            allStackFlow?.collect { list ->
                 _stackListIsEmptyUiState.value = list.isEmpty()
                 if(list.isEmpty()) {
                     Log.d("DEBUG", "LIST IS EMPTY")
@@ -37,7 +34,9 @@ class MainFragmentViewModel @Inject constructor(
         }
     }
 
-    fun getAllStacks() : Flow<List<Stack>> {
+    fun getAllStacks(sortBy: String) : Flow<List<Stack>>? {
+        allStackFlow = getAllStacksUseCase(sortBy)
+        setUiState()
         return allStackFlow
     }
 

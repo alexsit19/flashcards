@@ -9,14 +9,24 @@ interface FlashcardsDao {
     @Query("SELECT * FROM stack_names ORDER BY id DESC LIMIT 1")
     fun getStackWithMaxId() : Stack
 
-    @Query("SELECT * FROM stack_names")
-    fun getAllStacks() : Flow<List<Stack>>
+    @Query("SELECT * FROM stack_names ORDER BY " +
+            "(CASE " +
+            "WHEN :sortBy='id' THEN id " +
+            "WHEN :sortBy='name' THEN name " +
+            "ELSE id " +
+            "END)")
+    fun getAllStacks(sortBy: String) : Flow<List<Stack>>
 
-    @Query("SELECT * FROM cards WHERE stack_id = :stackId")
-    fun getAllCardsInStack(stackId: Long) : Flow<List<Card>>
+    @Query("SELECT * FROM cards WHERE stack_id = :stackId ORDER BY " +
+            "(CASE " +
+            "WHEN :sortBy='id' THEN id " +
+            "WHEN :sortBy='front_side' THEN front_side " +
+            "ELSE id " +
+            "END)")
+    fun getAllCardsInStack(stackId: Long, sortBy: String) : Flow<List<Card>>
 
     @Query("SELECT * FROM cards WHERE stack_id = (SELECT MAX(id) FROM stack_names)")
-    fun getCardsWhereStackIdMax() : Flow<List<Card>>//
+    fun getCardsWhereStackIdMax() : Flow<List<Card>>
 
     @Delete
     suspend fun deleteCard(card: Card)

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="pref_card_sort_values">
+        <item>id</item>
+        <item>front_side</item>
+    </string-array>
+    <string-array name="pref_stack_sort_values">
+        <item>id</item>
+        <item>name</item>
+    </string-array>
+    <string-array name="pref_sort_options">
+        <item>sort by addition</item>
+        <item>sort by name (abc)</item>
+    </string-array>
+</resources>

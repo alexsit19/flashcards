@@ -14,4 +14,13 @@
     <string name="list_stack_is_empty">Stack list is empty</string>
     <string name="list_card_is_empty">Card list is empty</string>
     <string name="add_new_card">add new card</string>
+    <string name="pref_screen_stack_category_key">stack_sort</string>
+    <string name="pref_screen_card_category_key">card_sort</string>
+    <string name="pref_screen_stack_category_title">Stack settings</string>
+    <string name="pref_screen_card_category_title">Card settings</string>
+    <string name="sort_default">sort by addition</string>
+    <string name="pref_card_sort_title">card sort</string>
+    <string name="pref_stack_sort_title">stack sort</string>
+    <string name="settings">settings</string>
+    <string name="toolbar_settings_title">Settings</string>
 </resources>

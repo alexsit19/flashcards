@@ -1,5 +1,6 @@
 package com.example.flashcards.presentation.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -10,8 +11,11 @@ import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.example.flashcards.R
 import com.example.flashcards.data.STACK_ID
 import com.example.flashcards.data.STACK_NAME
@@ -47,31 +51,57 @@ class MainFragment : Fragment(R.layout.main_fragment),
         _binding = MainFragmentBinding.bind(view)
         setMainMenuAndTitle()
 
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val sortByString = prefs.getString("stack_sort_key", "id") as String
+        Log.d("DEBUG", "sortBy $sortByString")
+
         val adapter = StackAdapter(this, requireContext())
         binding.stackRecycler.adapter = adapter
 
-        lifecycleScope.launchWhenCreated {
-            viewModel.stackListIsEmptyUiState
-                .onEach {
-                    when (it) {
-                        true -> binding.centralText.visibility = View.VISIBLE
-                        false -> binding.centralText.visibility = View.GONE
-                    }
-                }.collect()
+//        lifecycleScope.launchWhenCreated {
+//            viewModel.stackListIsEmptyUiState
+//                .onEach {
+//                    when (it) {
+//                        true -> binding.centralText.visibility = View.VISIBLE
+//                        false -> binding.centralText.visibility = View.GONE
+//                    }
+//                }.collect()
+//        }
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                viewModel.getAllStacks(sortByString)?.collect() { list ->
+                    Log.d("DEBUG", "$list")
+                    adapter.submitList(list)
+                }
+            }
         }
 
+//        lifecycleScope.launch {
+//            viewModel.getAllStacks(sortByString).collect() { list ->
+//                adapter.submitList(list)
+//            }
+//    }
 
-        lifecycleScope.launch {
-            viewModel.getAllStacks().collect() { list ->
-                adapter.submitList(list)
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
+                viewModel.stackListIsEmptyUiState
+                    .onEach {
+                        when (it) {
+                            true -> binding.centralText.visibility = View.VISIBLE
+                            false -> binding.centralText.visibility = View.GONE
+                        }
+                    }.collect()
             }
-    }
-
+        }
 
         binding.toolbarMainFragment.setOnMenuItemClickListener {
             Log.d("DEBUG", "yF;FNJ VTY.")
             when(it.itemId) {
-                R.id.action_settings -> true
+                R.id.action_settings -> {
+                    findNavController().navigate(R.id.open_settings_fragment)
+                    true
+                }
                 else -> false
             }
         }

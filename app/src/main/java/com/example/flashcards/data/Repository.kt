@@ -6,9 +6,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface Repository {
 
-    fun getAllStacks() : Flow<List<Stack>>
+    fun getAllStacks(sortBy: String) : Flow<List<Stack>>
 
-    fun getAllCardsInStack(stackId: Long) : Flow<List<Card>>
+    fun getAllCardsInStack(stackId: Long, sortBy: String = "id") : Flow<List<Card>>
 
     fun getCardsWhereStackIdMax() : Flow<List<Card>>
 

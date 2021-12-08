@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
     app:startDestination="@id/mainFragment">
 
@@ -85,4 +86,15 @@
             android:id="@+id/action_editCardFragment_to_listOfCardReviewFragment"
             app:destination="@id/listOfCardReviewFragment" />
     </fragment>
+
+    <fragment
+        android:id="@+id/settingsFragmentContainer"
+        android:name="com.example.flashcards.presentation.ui.SettingsFragmentContainer"
+        android:label="SettingsFragmentContainer">
+        <action
+            android:id="@+id/action_settingsFragmentContainer_to_mainFragment"
+            app:destination="@id/mainFragment" />
+    </fragment>
+    <action android:id="@+id/open_settings_fragment"
+        app:destination="@+id/settingsFragmentContainer"/>
 </navigation>

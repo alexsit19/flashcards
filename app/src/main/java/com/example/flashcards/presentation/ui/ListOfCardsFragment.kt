@@ -13,6 +13,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.example.flashcards.R
 import com.example.flashcards.data.STACK_ID
 import com.example.flashcards.databinding.ListOfCardsFragmentBinding
@@ -51,13 +52,16 @@ class ListOfCardsFragment : Fragment(R.layout.list_of_cards_fragment) {
 
         initToolbar()
 
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val sortByString = prefs.getString("card_sort_key", "id") as String
+
         val stackId = requireArguments().getLong(STACK_ID)
 
 
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getAllCardsInStack(stackId)?.collect() { list ->
+                viewModel.getAllCardsInStack(stackId, sortByString)?.collect() { list ->
                     Log.d("DEBUG", "$list")
                     val adapter = CardPageAdapter(list)
                     binding.viewPager.adapter = adapter
@@ -95,6 +99,17 @@ class ListOfCardsFragment : Fragment(R.layout.list_of_cards_fragment) {
     private fun initToolbar() {
         binding.toolbarListOfCard.inflateMenu(R.menu.menu_main_fragment)
         binding.toolbarListOfCard.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        binding.toolbarListOfCard.setTitleTextColor(resources.getColor(R.color.white))
+        binding.toolbarListOfCard.setTitle(R.string.app_name)
+        binding.toolbarListOfCard.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_settings -> {
+                    findNavController().navigate(R.id.open_settings_fragment)
+                    true
+                }
+                else -> false
+            }
+        }
         binding.toolbarListOfCard.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_listOfCardsFragment_to_mainFragment)
         }

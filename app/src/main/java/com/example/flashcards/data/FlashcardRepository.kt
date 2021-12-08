@@ -11,9 +11,8 @@ class FlashcardsRepository @Inject constructor(
     private val flashcardsDao: FlashcardsDao
     ) : Repository {
 
-    override fun getAllStacks(): Flow<List<Stack>> {
-        Log.d("DEBUG", "getAllStacks Repository")
-        return flashcardsDao.getAllStacks()
+    override fun getAllStacks(sortBy: String): Flow<List<Stack>> {
+        return flashcardsDao.getAllStacks(sortBy)
     }
 
     override suspend fun getStackWithMaxId(): Stack {
@@ -23,14 +22,14 @@ class FlashcardsRepository @Inject constructor(
     override fun getCardsWhereStackIdMax() : Flow<List<Card>> =
         flashcardsDao.getCardsWhereStackIdMax()
 
-    override fun getAllCardsInStack(stackId: Long) = flashcardsDao.getAllCardsInStack(stackId)
+    override fun getAllCardsInStack(stackId: Long, sortBy: String) =
+        flashcardsDao.getAllCardsInStack(stackId, sortBy)
 
     override suspend fun deleteCard(card: Card) = flashcardsDao.deleteCard(card)
 
     override suspend fun deleteStack(stack: Stack) = flashcardsDao.deleteStack(stack)
 
     override suspend fun insertStack(stack: Stack) : Long {
-        Log.d("DEBUG", "insertStack from Repository")
         flashcardsDao.insertStack(stack)
         return stack.id
     }

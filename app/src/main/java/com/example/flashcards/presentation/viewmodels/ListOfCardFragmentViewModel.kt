@@ -22,8 +22,8 @@ class ListOfCardFragmentViewModel @Inject constructor(
     val listIsEmptyUiState: StateFlow<Boolean> = _listIsEmptyUiState
     var allCardsFlow: Flow<List<Card>>? = null
 
-    fun getAllCardsInStack(stackId: Long): Flow<List<Card>>? {
-        allCardsFlow = getAllCardsInStackUseCase(stackId)
+    fun getAllCardsInStack(stackId: Long, sortBy: String): Flow<List<Card>>? {
+        allCardsFlow = getAllCardsInStackUseCase(stackId, sortBy)
         setUiState()
         return allCardsFlow
     }

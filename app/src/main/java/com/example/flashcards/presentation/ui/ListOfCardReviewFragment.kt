@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.*
 import androidx.navigation.fragment.findNavController
+import androidx.preference.PreferenceManager
 import com.example.flashcards.R
 import com.example.flashcards.data.CARD_BACK_SIDE
 import com.example.flashcards.data.CARD_FRONT_SIDE
@@ -55,6 +56,10 @@ class ListOfCardReviewFragment : Fragment(),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         //_binding = ListOfCardReviewFragmentBinding.bind(view)
+
+        val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val sortByString = prefs.getString("card_sort_key", "id") as String
+
         val adapter = CardAdapter(this)
         val stackId = requireArguments().getLong(STACK_ID)
         binding.cardReviewRecycler.adapter = adapter
@@ -73,7 +78,7 @@ class ListOfCardReviewFragment : Fragment(),
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.getAllCardsInStack(stackId)?.collect() { list ->
+                viewModel.getAllCardsInStack(stackId, sortByString)?.collect() { list ->
                     Log.d("DEBUG", "$list")
                     adapter.submitList(list)
                 }
@@ -107,8 +112,19 @@ class ListOfCardReviewFragment : Fragment(),
     private fun initToolbar() {
         binding.toolbarListCardReview.inflateMenu(R.menu.menu_main_fragment)
         binding.toolbarListCardReview.setNavigationIcon(R.drawable.ic_baseline_arrow_back_24)
+        binding.toolbarListCardReview.setTitleTextColor(resources.getColor(R.color.white))
+        binding.toolbarListCardReview.setTitle(R.string.app_name)
         binding.toolbarListCardReview.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_listOfCardReviewFragment_to_mainFragment)
+        }
+        binding.toolbarListCardReview.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_settings -> {
+                    findNavController().navigate(R.id.open_settings_fragment)
+                    true
+                }
+                else -> false
+            }
         }
     }
 

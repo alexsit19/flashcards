@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory
+        app:key="@string/pref_screen_stack_category_key"
+        app:title="@string/pref_screen_stack_category_title">
+
+        <ListPreference
+            android:key="stack_sort_key"
+            android:title="@string/pref_stack_sort_title"
+            android:defaultValue="@string/sort_default"
+            android:entryValues="@array/pref_stack_sort_values"
+            android:entries="@array/pref_sort_options"
+            android:summary="%s"
+            app:useSimpleSummaryProvider="true"/>
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="@string/pref_screen_card_category_key"
+        app:title="@string/pref_screen_card_category_title">
+
+        <ListPreference
+            android:key="card_sort_key"
+            android:title="@string/pref_card_sort_title"
+            android:defaultValue="@string/sort_default"
+            android:entryValues="@array/pref_card_sort_values"
+            android:entries="@array/pref_sort_options"
+            android:summary="%s"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
