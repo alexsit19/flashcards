@@ -23,4 +23,7 @@
     <string name="pref_stack_sort_title">stack sort</string>
     <string name="settings">settings</string>
     <string name="toolbar_settings_title">Settings</string>
+    <string name="theme_title">Theme settings</string>
+    <string name="theme_key_category">theme_key</string>
+    <string name="choose_theme_title">Choose theme</string>
 </resources>

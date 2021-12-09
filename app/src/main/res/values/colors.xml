@@ -13,4 +13,5 @@
     <color name="silver">#FFC0C0C0</color>
     <color name="gray">#FF808080</color>
     <color name="dodger_blue">#FF1E90FF</color>
+    <color name="dim_grey">#FF696969</color>
 </resources>

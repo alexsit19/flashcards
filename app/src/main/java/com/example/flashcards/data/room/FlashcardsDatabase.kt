@@ -17,19 +17,5 @@ public abstract class FlashcardsDatabase : RoomDatabase()  {
         @Volatile
         private var INSTANCE: FlashcardsDatabase? = null
 
-//        fun getDatabase(
-//            context: FlashcardsApp
-//        ): FlashcardsDatabase {
-//            return INSTANCE ?: synchronized(this) {
-//                val instance = Room.databaseBuilder(
-//                    context.applicationContext,
-//                    FlashcardsDatabase::class.java,
-//                    DB_NAME
-//                )
-//                    .build()
-//                INSTANCE = instance
-//                instance
-//            }
-//        }
     }
 }

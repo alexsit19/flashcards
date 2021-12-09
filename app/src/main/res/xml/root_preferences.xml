@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="preferenceScreen">
 
     <PreferenceCategory
         app:key="@string/pref_screen_stack_category_key"
@@ -26,6 +27,21 @@
             android:defaultValue="@string/sort_default"
             android:entryValues="@array/pref_card_sort_values"
             android:entries="@array/pref_sort_options"
+            android:summary="%s"
+            app:useSimpleSummaryProvider="true"/>
+
+    </PreferenceCategory>
+
+    <PreferenceCategory
+        app:key="theme_key_category"
+        app:title="@string/theme_title">
+
+        <ListPreference
+            android:key="themes_key"
+            android:title="@string/choose_theme_title"
+            android:defaultValue="light"
+            android:entryValues="@array/pref_theme_values"
+            android:entries="@array/pref_theme_options"
             android:summary="%s"
             app:useSimpleSummaryProvider="true"/>
 

@@ -52,22 +52,6 @@ class AddCardFragment : Fragment(R.layout.add_card_fragment) {
                 binding.textInputLayoutBackSide.error = getString(R.string.error_input_layout)
             }
 
-//            if (backSideText.isNotEmpty() {
-//                binding.textInputLayoutBackSide.error = null
-//                    if (frontSideText.isNotEmpty()) {
-//                        binding.textInputEdittextFrontSide.error = null
-//                    } else {
-//                        binding.textInputLayoutFrontSide.error = getString(R.string.error_input_layout)
-//                    }
-//
-//                viewModel.insertCard(Card(0L, stackId, frontSideText, backSideText))
-//                findNavController().navigate(
-//                    R.id.action_addCardFragment_to_listOfCardReviewFragment,
-//                    bundleOf(STACK_ID to stackId)
-//                )
-//            } else {
-//
-//            }
             true
         }
     }

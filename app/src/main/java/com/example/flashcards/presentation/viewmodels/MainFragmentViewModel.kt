@@ -20,7 +20,6 @@ class MainFragmentViewModel @Inject constructor(
 
     private val _stackListIsEmptyUiState = MutableStateFlow(true)
     val stackListIsEmptyUiState: StateFlow<Boolean> = _stackListIsEmptyUiState
-    //private val allStackFlow = getAllStacksUseCase()
     var allStackFlow: Flow<List<Stack>>? = null
 
     private fun setUiState() {

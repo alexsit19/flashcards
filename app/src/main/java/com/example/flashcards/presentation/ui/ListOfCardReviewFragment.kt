@@ -55,7 +55,6 @@ class ListOfCardReviewFragment : Fragment(),
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        //_binding = ListOfCardReviewFragmentBinding.bind(view)
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val sortByString = prefs.getString("card_sort_key", "id") as String
@@ -97,16 +96,6 @@ class ListOfCardReviewFragment : Fragment(),
                 }.collect()
             }
         }
-//        lifecycleScope.launchWhenCreated {
-//            viewModel.listIsEmptyUiState
-//                .onEach {
-//                    when (it) {
-//                        true -> binding.centralText.visibility = View.VISIBLE
-//                        false -> binding.centralText.visibility = View.GONE
-//                    }
-//                }.collect()
-//        }
-
     }
 
     private fun initToolbar() {

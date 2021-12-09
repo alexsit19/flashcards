@@ -12,4 +12,12 @@
         <item>sort by addition</item>
         <item>sort by name (abc)</item>
     </string-array>
+    <string-array name="pref_theme_options">
+        <item>Light theme</item>
+        <item>Dark theme</item>
+    </string-array>
+    <string-array name="pref_theme_values">
+        <item>light</item>
+        <item>dark</item>
+    </string-array>
 </resources>

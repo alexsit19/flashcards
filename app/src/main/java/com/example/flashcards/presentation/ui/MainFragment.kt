@@ -1,12 +1,14 @@
 package com.example.flashcards.presentation.ui
 
 import android.content.Context
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.core.view.get
 import androidx.fragment.app.Fragment
@@ -46,9 +48,27 @@ class MainFragment : Fragment(R.layout.main_fragment),
         }
     }
 
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
+        val prefTheme = pref.getString("themes_key", "light") as String
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+            when (prefTheme) {
+                "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+                "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
+            }
+        }
+        _binding = MainFragmentBinding.inflate(inflater, container, false)
+        return binding.root
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        _binding = MainFragmentBinding.bind(view)
+
         setMainMenuAndTitle()
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
@@ -58,16 +78,6 @@ class MainFragment : Fragment(R.layout.main_fragment),
         val adapter = StackAdapter(this, requireContext())
         binding.stackRecycler.adapter = adapter
 
-//        lifecycleScope.launchWhenCreated {
-//            viewModel.stackListIsEmptyUiState
-//                .onEach {
-//                    when (it) {
-//                        true -> binding.centralText.visibility = View.VISIBLE
-//                        false -> binding.centralText.visibility = View.GONE
-//                    }
-//                }.collect()
-//        }
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getAllStacks(sortByString)?.collect() { list ->
@@ -76,12 +86,6 @@ class MainFragment : Fragment(R.layout.main_fragment),
                 }
             }
         }
-
-//        lifecycleScope.launch {
-//            viewModel.getAllStacks(sortByString).collect() { list ->
-//                adapter.submitList(list)
-//            }
-//    }
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {
@@ -118,22 +122,6 @@ class MainFragment : Fragment(R.layout.main_fragment),
         binding.toolbarMainFragment.setTitle(R.string.app_name)
         binding.toolbarMainFragment.inflateMenu(R.menu.menu_main_fragment)
     }
-
-//    private fun setEditMenu(stack: Stack) {
-//        binding.toolbarMainFragment.menu.clear()
-//        binding.toolbarMainFragment.title = ""
-//        binding.toolbarMainFragment.inflateMenu(R.menu.menu_edit_stack_item)
-//        binding.toolbarMainFragment.setOnMenuItemClickListener {
-//            when(it.itemId) {
-//                R.id.action_delete -> {
-//                    deleteStack(stack)
-//                    setMainMenuAndTitle()
-//                    true
-//                }
-//                else -> false
-//            }
-//        }
-//    }
 
     override fun openCardList(stackId: Long) {
         findNavController().navigate(
