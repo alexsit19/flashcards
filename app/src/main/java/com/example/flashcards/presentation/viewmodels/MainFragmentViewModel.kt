@@ -1,6 +1,5 @@
 package com.example.flashcards.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashcards.data.room.Stack
@@ -28,9 +27,6 @@ class MainFragmentViewModel @Inject constructor(
         viewModelScope.launch {
             allStackFlow?.collect { list ->
                 _stackListIsEmptyUiState.value = list.isEmpty()
-                if (list.isEmpty()) {
-                    Log.d("DEBUG", "LIST IS EMPTY")
-                }
             }
         }
     }

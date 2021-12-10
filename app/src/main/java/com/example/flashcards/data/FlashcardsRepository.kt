@@ -1,5 +1,6 @@
 package com.example.flashcards.data
 
+import android.util.Log
 import com.example.flashcards.data.room.Card
 import com.example.flashcards.data.room.FlashcardsDao
 import com.example.flashcards.data.room.Stack
@@ -11,6 +12,7 @@ class FlashcardsRepository @Inject constructor(
 ) : Repository {
 
     override fun getAllStacks(sortBy: String): Flow<List<Stack>> {
+        Log.d("DEBUG", "DEBUG")
         return flashcardsDao.getAllStacks(sortBy)
     }
 
