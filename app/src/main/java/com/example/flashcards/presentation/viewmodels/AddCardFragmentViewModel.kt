@@ -11,7 +11,7 @@ import javax.inject.Inject
 @HiltViewModel
 class AddCardFragmentViewModel @Inject constructor (
     private val insertCardUseCase: InsertCardUseCase
-    ) : ViewModel() {
+) : ViewModel() {
 
         fun insertCard(card: Card) {
             viewModelScope.launch {

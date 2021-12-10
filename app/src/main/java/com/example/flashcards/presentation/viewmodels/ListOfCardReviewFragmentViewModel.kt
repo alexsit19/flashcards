@@ -1,10 +1,10 @@
 package com.example.flashcards.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashcards.data.room.Card
-import com.example.flashcards.domain.*
+import com.example.flashcards.domain.GetAllCardsInStackUseCase
+import com.example.flashcards.domain.DeleteCardUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,7 +17,7 @@ import javax.inject.Inject
 class ListOfCardReviewFragmentViewModel @Inject constructor(
     private val getAllCardsInStackUseCase: GetAllCardsInStackUseCase,
     private val deleteCardUseCase: DeleteCardUseCase
-    ) : ViewModel() {
+) : ViewModel() {
 
     private val _listIsEmptyUiState = MutableStateFlow(true)
     val listIsEmptyUiState: StateFlow<Boolean> = _listIsEmptyUiState
@@ -33,9 +33,6 @@ class ListOfCardReviewFragmentViewModel @Inject constructor(
         viewModelScope.launch {
                 allCardsFlow?.collect { list ->
                     _listIsEmptyUiState.value = list.isEmpty()
-                    if(list.isEmpty()) {
-                        Log.d("DEBUG", "LIST IS EMPTY")
-                    }
                 }
             }
     }

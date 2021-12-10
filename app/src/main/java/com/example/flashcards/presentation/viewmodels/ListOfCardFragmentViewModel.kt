@@ -1,6 +1,5 @@
 package com.example.flashcards.presentation.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.flashcards.data.room.Card
@@ -32,9 +31,6 @@ class ListOfCardFragmentViewModel @Inject constructor(
         viewModelScope.launch {
             allCardsFlow?.collect { list ->
                 _listIsEmptyUiState.value = list.isEmpty()
-                if(list.isEmpty()) {
-                    Log.d("DEBUG", "LIST IS EMPTY")
-                }
             }
         }
     }

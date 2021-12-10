@@ -1,7 +1,6 @@
 package com.example.flashcards.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,9 @@ import androidx.activity.addCallback
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.*
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
+import androidx.lifecycle.Lifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.preference.PreferenceManager
 import com.example.flashcards.R
@@ -19,11 +20,9 @@ import com.example.flashcards.data.CARD_ID
 import com.example.flashcards.data.STACK_ID
 import com.example.flashcards.data.room.Card
 import com.example.flashcards.databinding.ListOfCardReviewFragmentBinding
-import com.example.flashcards.databinding.MainFragmentBinding
 import com.example.flashcards.presentation.ui.recyclers.CardAdapter
 import com.example.flashcards.presentation.ui.recyclers.CardReviewItemClickListener
 import com.example.flashcards.presentation.viewmodels.ListOfCardReviewFragmentViewModel
-import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.onEach
@@ -71,19 +70,13 @@ class ListOfCardReviewFragment : Fragment(),
                 bundleOf(STACK_ID to stackId)
             )
         }
-
-
-        Log.d("DEBUG", "STACK_ID = $stackId")
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getAllCardsInStack(stackId, sortByString)?.collect() { list ->
-                    Log.d("DEBUG", "$list")
                     adapter.submitList(list)
                 }
             }
         }
-
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.CREATED) {

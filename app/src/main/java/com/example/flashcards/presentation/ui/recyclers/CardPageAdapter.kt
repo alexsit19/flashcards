@@ -1,16 +1,14 @@
 package com.example.flashcards.presentation.ui.recyclers
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import com.example.flashcards.R
 import com.example.flashcards.data.room.Card
 import com.example.flashcards.databinding.ItemViewpagerBinding
 
-class CardPageAdapter (
+class CardPageAdapter(
     private val cardList: List<Card>
-    ) : RecyclerView.Adapter<CardPageAdapter.CardPagerViewHolder>()  {
+) : RecyclerView.Adapter<CardPageAdapter.CardPagerViewHolder>() {
 
     inner class CardPagerViewHolder(
         private val binding: ItemViewpagerBinding
@@ -44,6 +42,4 @@ class CardPageAdapter (
     override fun getItemCount(): Int {
         return cardList.size
     }
-
-
 }

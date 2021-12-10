@@ -11,7 +11,7 @@ class StackViewHolder(
 
     fun bind(stack: Stack) {
         binding.stackName.text = stack.name
-        binding.itemLayout.setOnClickListener{
+        binding.itemLayout.setOnClickListener {
             listener.openCardList(stack.id)
             }
         binding.deleteButton.setOnClickListener {
@@ -25,5 +25,3 @@ class StackViewHolder(
         }
     }
 }
-
-

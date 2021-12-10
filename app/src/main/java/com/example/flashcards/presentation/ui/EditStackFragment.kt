@@ -1,7 +1,6 @@
 package com.example.flashcards.presentation.ui
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,7 +13,6 @@ import com.example.flashcards.data.STACK_ID
 import com.example.flashcards.data.STACK_NAME
 import com.example.flashcards.data.room.Stack
 import com.example.flashcards.databinding.EditStackFragmentBinding
-import com.example.flashcards.databinding.MainFragmentBinding
 import com.example.flashcards.presentation.viewmodels.EditStackFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -49,16 +47,14 @@ class EditStackFragment : Fragment(R.layout.edit_stack_fragment) {
         binding.textInputEdittext.setText(stackName)
 
         binding.textInputEdittext.doOnTextChanged { text, start, before, count ->
-            if(text?.length == 0) {
+            if (text?.length == 0) {
                 binding.textInputLayout.error = getString(R.string.error_input_layout)
-
             } else {
                 binding.textInputLayout.error = null
             }
         }
 
         binding.toolbarEditStackFragment.setOnMenuItemClickListener {
-            Log.d("DEBUG", "нажата кнопка ок")
             val stackNameEditText = binding.textInputEdittext.text.toString()
             if (stackNameEditText.isNotEmpty()) {
                 binding.textInputLayout.error = null
@@ -77,5 +73,4 @@ class EditStackFragment : Fragment(R.layout.edit_stack_fragment) {
         super.onDestroyView()
         _binding = null
     }
-
 }

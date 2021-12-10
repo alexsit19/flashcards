@@ -3,12 +3,10 @@ package com.example.flashcards.presentation.ui
 import android.content.SharedPreferences
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatDelegate
-import androidx.preference.*
+import androidx.preference.PreferenceFragmentCompat
+import androidx.preference.PreferenceManager
+import androidx.preference.PreferenceCategory
 import com.example.flashcards.R
 import dagger.hilt.android.AndroidEntryPoint
 

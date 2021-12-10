@@ -1,6 +1,5 @@
 package com.example.flashcards.data
 
-import android.util.Log
 import com.example.flashcards.data.room.Card
 import com.example.flashcards.data.room.FlashcardsDao
 import com.example.flashcards.data.room.Stack
@@ -9,7 +8,7 @@ import javax.inject.Inject
 
 class FlashcardsRepository @Inject constructor(
     private val flashcardsDao: FlashcardsDao
-    ) : Repository {
+) : Repository {
 
     override fun getAllStacks(sortBy: String): Flow<List<Stack>> {
         return flashcardsDao.getAllStacks(sortBy)
@@ -19,7 +18,7 @@ class FlashcardsRepository @Inject constructor(
         return flashcardsDao.getStackWithMaxId()
     }
 
-    override fun getCardsWhereStackIdMax() : Flow<List<Card>> =
+    override fun getCardsWhereStackIdMax(): Flow<List<Card>> =
         flashcardsDao.getCardsWhereStackIdMax()
 
     override fun getAllCardsInStack(stackId: Long, sortBy: String) =
@@ -29,7 +28,7 @@ class FlashcardsRepository @Inject constructor(
 
     override suspend fun deleteStack(stack: Stack) = flashcardsDao.deleteStack(stack)
 
-    override suspend fun insertStack(stack: Stack) : Long {
+    override suspend fun insertStack(stack: Stack): Long {
         flashcardsDao.insertStack(stack)
         return stack.id
     }

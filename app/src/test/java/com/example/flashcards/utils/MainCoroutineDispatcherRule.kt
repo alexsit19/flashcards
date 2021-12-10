@@ -8,7 +8,6 @@ import kotlinx.coroutines.test.setMain
 import org.junit.rules.TestWatcher
 import org.junit.runner.Description
 
-
 class MainCoroutineDispatcherRule(private val dispatcher: TestCoroutineDispatcher = TestCoroutineDispatcher()) :
     TestWatcher(), TestCoroutineScope by TestCoroutineScope(dispatcher) {
 
@@ -22,5 +21,4 @@ class MainCoroutineDispatcherRule(private val dispatcher: TestCoroutineDispatche
         cleanupTestCoroutines()
         Dispatchers.resetMain()
     }
-
 }

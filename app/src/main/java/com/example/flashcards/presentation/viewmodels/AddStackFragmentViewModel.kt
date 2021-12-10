@@ -25,7 +25,6 @@ class AddStackFragmentViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             insertStackUseCase(stack)
             stateStackId.value = getStackWithMaxId().id
-
         }
     }
 

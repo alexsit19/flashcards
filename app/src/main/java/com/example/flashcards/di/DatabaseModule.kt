@@ -17,13 +17,13 @@ import javax.inject.Singleton
 class DatabaseModule {
 
     @Provides
-    fun provideFlashcardsDao(dataBase: FlashcardsDatabase) : FlashcardsDao {
+    fun provideFlashcardsDao(dataBase: FlashcardsDatabase): FlashcardsDao {
         return dataBase.flashcardsDao()
     }
 
     @Provides
     @Singleton
-    fun provideFlashcardsDatabase(@ApplicationContext context: Context) : FlashcardsDatabase {
+    fun provideFlashcardsDatabase(@ApplicationContext context: Context): FlashcardsDatabase {
         return Room.databaseBuilder(
             context,
             FlashcardsDatabase::class.java,

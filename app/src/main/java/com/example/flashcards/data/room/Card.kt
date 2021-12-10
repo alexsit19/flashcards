@@ -1,6 +1,5 @@
 package com.example.flashcards.data.room
 
-import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.ForeignKey

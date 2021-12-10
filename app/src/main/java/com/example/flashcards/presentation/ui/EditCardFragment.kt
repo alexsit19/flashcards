@@ -15,7 +15,6 @@ import com.example.flashcards.data.CARD_FRONT_SIDE
 import com.example.flashcards.data.CARD_ID
 import com.example.flashcards.data.STACK_ID
 import com.example.flashcards.data.room.Card
-import com.example.flashcards.databinding.AddCardFragmentBinding
 import com.example.flashcards.databinding.EditCardFragmentBinding
 import com.example.flashcards.presentation.viewmodels.EditCardFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -65,30 +64,25 @@ class EditCardFragment : Fragment(R.layout.edit_card_fragment) {
                     } else {
                         binding.textInputLayoutFrontSide.error = getString(R.string.error_input_layout)
                     }
-
                 } else {
                     binding.textInputLayoutBackSide.error = getString(R.string.error_input_layout)
                 }
-
-
                 true
             }
         }
 
         private fun setOnChangeListeners() {
             binding.textInputEdittextFrontSide.doOnTextChanged { text, start, before, count ->
-                if(text?.length == 0) {
+                if (text?.length == 0) {
                     binding.textInputEdittextFrontSide.error = getString(R.string.error_input_layout)
-
                 } else {
                     binding.textInputLayoutFrontSide.error = null
                 }
             }
 
             binding.textInputEdittextBackSide.doOnTextChanged { text, start, before, count ->
-                if(text?.length == 0) {
+                if (text?.length == 0) {
                     binding.textInputEdittextBackSide.error = getString(R.string.error_input_layout)
-
                 } else {
                     binding.textInputEdittextBackSide.error = null
                 }

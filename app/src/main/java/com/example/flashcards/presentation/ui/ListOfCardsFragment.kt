@@ -1,13 +1,10 @@
 package com.example.flashcards.presentation.ui
 
-import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -60,12 +57,9 @@ class ListOfCardsFragment : Fragment(R.layout.list_of_cards_fragment) {
 
         val stackId = requireArguments().getLong(STACK_ID)
 
-
-
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getAllCardsInStack(stackId, sortByString)?.collect() { list ->
-                    Log.d("DEBUG", "$list")
                     val adapter = CardPageAdapter(list)
                     binding.viewPager.adapter = adapter
                 }

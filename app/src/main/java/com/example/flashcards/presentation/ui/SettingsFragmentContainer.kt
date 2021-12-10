@@ -1,14 +1,11 @@
 package com.example.flashcards.presentation.ui
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import androidx.preference.PreferenceManager
 import com.example.flashcards.R
 import com.example.flashcards.databinding.SettingsFragmentContainerBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,12 +34,7 @@ class SettingsFragmentContainer : Fragment(R.layout.settings_fragment_container)
         binding.toolbarSettingsFragment.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_settingsFragmentContainer_to_mainFragment)
         }
-
-
-
     }
-
-
 
     override fun onDestroyView() {
         super.onDestroyView()

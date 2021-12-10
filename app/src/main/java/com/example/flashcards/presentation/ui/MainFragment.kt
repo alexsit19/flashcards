@@ -1,16 +1,13 @@
 package com.example.flashcards.presentation.ui
 
-import android.content.Context
 import android.os.Build
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.bundleOf
-import androidx.core.view.get
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -26,10 +23,8 @@ import com.example.flashcards.databinding.MainFragmentBinding
 import com.example.flashcards.presentation.ui.recyclers.StackItemClickListener
 import com.example.flashcards.presentation.ui.recyclers.StackAdapter
 import com.example.flashcards.presentation.viewmodels.MainFragmentViewModel
-//import com.example.flashcards.presentation.viewmodels.MainFragmentViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
@@ -57,7 +52,7 @@ class MainFragment : Fragment(R.layout.main_fragment),
         val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val prefTheme = pref.getString("themes_key", "light") as String
 
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
             when (prefTheme) {
                 "light" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
                 "dark" -> AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES)
@@ -74,15 +69,13 @@ class MainFragment : Fragment(R.layout.main_fragment),
 
         val prefs = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val sortByString = prefs.getString("stack_sort_key", "id") as String
-        Log.d("DEBUG", "sortBy $sortByString")
 
-        val adapter = StackAdapter(this, requireContext())
+        val adapter = StackAdapter(this)
         binding.stackRecycler.adapter = adapter
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.getAllStacks(sortByString)?.collect() { list ->
-                    Log.d("DEBUG", "$list")
                     adapter.submitList(list)
                 }
             }
@@ -101,8 +94,7 @@ class MainFragment : Fragment(R.layout.main_fragment),
         }
 
         binding.toolbarMainFragment.setOnMenuItemClickListener {
-            Log.d("DEBUG", "yF;FNJ VTY.")
-            when(it.itemId) {
+            when (it.itemId) {
                 R.id.action_settings -> {
                     findNavController().navigate(R.id.open_settings_fragment)
                     true
