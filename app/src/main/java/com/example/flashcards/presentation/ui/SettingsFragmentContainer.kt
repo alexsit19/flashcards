@@ -37,5 +37,15 @@ class SettingsFragmentContainer : Fragment(R.layout.settings_fragment_container)
         binding.toolbarSettingsFragment.setNavigationOnClickListener {
             findNavController().navigate(R.id.action_settingsFragmentContainer_to_mainFragment)
         }
+
+
+
+    }
+
+
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

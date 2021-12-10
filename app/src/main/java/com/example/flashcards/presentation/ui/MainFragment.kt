@@ -53,6 +53,7 @@ class MainFragment : Fragment(R.layout.main_fragment),
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
         val pref = PreferenceManager.getDefaultSharedPreferences(requireContext())
         val prefTheme = pref.getString("themes_key", "light") as String
 
